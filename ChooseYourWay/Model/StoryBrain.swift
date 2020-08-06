@@ -38,7 +38,26 @@ struct StoryBrain {
         title: "You bond with the murderer while crooning verses of 'Can you feel the love tonight'. He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: 'Try the pier.'",
         choice1: "The", choice1Destination: 0,
         choice2: "End", choice2Destination: 0
-    ) ]
+        ) ];
     
+    var destination = 0;
     
+    func getStoryText() -> String {
+        return story[destination].title;
+    }
+    
+    func getChoice(_ choice: Int) -> String {
+        if choice == 1 {
+            return story[destination].choice1;
+        }
+        return story[destination].choice2;
+    }
+    
+    mutating func checkChoice(_ choice: String) {
+        if story[destination].choice1 == choice {
+            destination = story[destination].choice1Destination
+        } else {
+            destination = story[destination].choice2Destination
+        }
+    }
 }
